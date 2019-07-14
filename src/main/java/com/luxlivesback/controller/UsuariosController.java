@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -63,10 +64,21 @@ public class UsuariosController {
 	@GetMapping("/pag/{pag}")
 	public ResponseEntity<ResponseList<UsuariosDto>> findAllOrderByNomeWithPag(@PathVariable int pag) {
 		
-		log.info("Buscar lista de usuários, pag: {}", pag);
-		
+		log.info("Buscar lista de usuários, pag: {}", pag);		
 		ResponseList<UsuariosDto> response = new ResponseList<UsuariosDto>();
-		List<Usuarios> usuarios = usuariosService.findAllByPage(PageRequest.of(pag, qtdPorPagina));
+		List<Usuarios> usuarios = usuariosService.findAllByPage(PageRequest.of(pag, qtdPorPagina)).get();
+		List<UsuariosDto> dto = new ArrayList<UsuariosDto>();
+		usuarios.forEach(x -> dto.add(usuariosFunction.convertEntityToDto(x)));
+		response.setData(dto);
+		return ResponseEntity.ok(response);
+	}
+	
+	@GetMapping("/nome/{nome}/pag/{pag}")
+	public ResponseEntity<ResponseList<UsuariosDto>> teste(@PathVariable String nome, @PathVariable int pag) {
+		
+		log.info("Buscar lista de usuários pelo nome: {}, pag: {}", nome, pag);		
+		ResponseList<UsuariosDto> response = new ResponseList<UsuariosDto>();
+		Page<Usuarios> usuarios = usuariosService.findAllByNomeStartingWithIgnoreCaseOrderByNome(nome ,PageRequest.of(pag, qtdPorPagina)).get();
 		List<UsuariosDto> dto = new ArrayList<UsuariosDto>();
 		usuarios.forEach(x -> dto.add(usuariosFunction.convertEntityToDto(x)));
 		response.setData(dto);
@@ -76,8 +88,7 @@ public class UsuariosController {
 	@GetMapping("/{id}")
 	public ResponseEntity<Response<UsuariosDto>> findById(@PathVariable Long id) {
 		
-		log.info("Buscar usuário pelo id: {}", id);
-		
+		log.info("Buscar usuário pelo id: {}", id);		
 		Response<UsuariosDto> response = new Response<UsuariosDto>();
 		Optional<Usuarios> usuario = usuariosService.findById(id);
 		

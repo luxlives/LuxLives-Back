@@ -102,7 +102,7 @@
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
-			<scope>runtime</scope>
+			<scope>test</scope>
 		</dependency>
 		
 		<!-- Swagger - Esse pacote é responsável por extrair e processar as informações do código fonte a API -->

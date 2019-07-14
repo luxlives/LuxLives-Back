@@ -57,8 +57,7 @@ public class PaisesController {
 	@GetMapping("/{id}")
 	public ResponseEntity<Response<PaisesDto>> findById(@PathVariable Long id) {
 		
-		log.info("Buscando Pais pelo id: {}", id);
-		
+		log.info("Buscando Pais pelo id: {}", id);		
 		Response<PaisesDto> response = new Response<PaisesDto>();
 		Optional<Paises> paises = paisesService.findById(id);
 		
@@ -117,8 +116,7 @@ public class PaisesController {
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Response<Boolean>> deleteById(@PathVariable Long id) {
 		
-		log.info("Deletando Pais pelo id: {}", id);
-		
+		log.info("Deletando Pais pelo id: {}", id);		
 		Response<Boolean> response = new Response<Boolean>();		
 		Optional<Paises> paises = paisesService.findById(id);
 		

@@ -57,8 +57,7 @@ public class TagsController {
 	@GetMapping("/{id}")
 	public ResponseEntity<Response<TagsDto>> findById(@PathVariable Long id) {
 		
-		log.info("Buscando Tag pelo id: {}", id);
-		
+		log.info("Buscando Tag pelo id: {}", id);		
 		Response<TagsDto> response = new Response<TagsDto>();
 		Optional<Tags> tags = tagsService.findById(id);
 		
@@ -117,8 +116,7 @@ public class TagsController {
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Response<Boolean>> deleteById(@PathVariable Long id) {
 		
-		log.info("Deletando Tag pelo id: {}", id);
-		
+		log.info("Deletando Tag pelo id: {}", id);		
 		Response<Boolean> response = new Response<Boolean>();
 		Optional<Tags> tags = tagsService.findById(id);
 		

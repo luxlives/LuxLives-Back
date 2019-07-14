@@ -105,7 +105,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 						"/v2/api-docs",
                         "/configuration/**",
                         "/swagger*/**",
-                        "/webjars/**")
+                        "/webjars/**",
+                        "/h2-console/**")
 				.permitAll()
 				.anyRequest()
 				.authenticated();

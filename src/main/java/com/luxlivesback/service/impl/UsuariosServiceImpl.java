@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -20,11 +21,29 @@ public class UsuariosServiceImpl implements UsuariosService {
 	
 	@Autowired
 	private UsuariosRepository usuariosRepository;
+	
+	@Override
+	public Optional<List<Usuarios>> findAll() {
+		log.info("Buscando lista de usuarios");
+		return Optional.ofNullable(usuariosRepository.findAll());
+	}
 
 	@Override
-	public List<Usuarios> findAllByPage(Pageable pageable) {
+	public Optional<List<Usuarios>> findAllByPage(Pageable pageable) {
 		log.info("Buscando lista de usuarios paginados");
-		return usuariosRepository.findAllByPage(pageable);
+		return Optional.ofNullable(usuariosRepository.findAllByPage(pageable));
+	}
+	
+	@Override
+	public Optional<List<Usuarios>> findAllByNomeIgnoreCase(String nome) {
+		log.info("Buscando lista de usuarios paginados pelo nome: {}", nome);
+		return Optional.ofNullable(usuariosRepository.findAllByNomeStartingWithIgnoreCaseOrderByNome(nome));
+	}	
+	
+	@Override
+	public Optional<Page<Usuarios>> findAllByNomeStartingWithIgnoreCaseOrderByNome(String nome, Pageable pageable) {
+		log.info("Buscando lista de usuarios paginados pelo nome: {}, pag: {}", nome, pageable.toString());
+		return Optional.ofNullable(usuariosRepository.findAllByNomeStartingWithIgnoreCaseOrderByNome(nome, pageable));
 	}
 
 	@Override
@@ -66,5 +85,5 @@ public class UsuariosServiceImpl implements UsuariosService {
 		} catch(Exception e) {
 			return false;
 		}		
-	}
+	}	
 }

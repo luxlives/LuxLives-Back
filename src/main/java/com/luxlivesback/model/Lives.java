@@ -16,6 +16,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 @Entity
 @Table(name = "lives", schema = "public")
 public class Lives implements java.io.Serializable {
@@ -34,9 +36,10 @@ public class Lives implements java.io.Serializable {
 	private String titulo;
 	
 	@Column(name = "genero")
-	private char genero;
+	private String genero;
 	
 	@Temporal(TemporalType.TIMESTAMP)
+	@CreationTimestamp
 	@Column(name = "dataini", updatable = false)
 	private Calendar dataIni;
 	
@@ -45,7 +48,7 @@ public class Lives implements java.io.Serializable {
 	private Calendar dataFim;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "usuarios_id", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "usuarios_id", nullable = false, updatable = false)
 	private Usuarios usuarios;
 	
 	@OneToMany(mappedBy = "lives", fetch = FetchType.LAZY, targetEntity = TagsLives.class)
@@ -58,7 +61,7 @@ public class Lives implements java.io.Serializable {
 	
 	public Lives(Long id) { this.id = id; }
 
-	public Lives(Long id, String titulo, char genero, Calendar dataIni, Calendar dataFim, Usuarios usuarios) {
+	public Lives(Long id, String titulo, String genero, Calendar dataIni, Calendar dataFim, Usuarios usuarios) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
@@ -84,11 +87,11 @@ public class Lives implements java.io.Serializable {
 		this.titulo = titulo;
 	}
 
-	public char getGenero() {
+	public String getGenero() {
 		return genero;
 	}
 
-	public void setGenero(char genero) {
+	public void setGenero(String genero) {
 		this.genero = genero;
 	}
 

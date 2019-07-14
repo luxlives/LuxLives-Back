@@ -1,5 +1,6 @@
 package com.luxlivesback.controller;
 
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -21,6 +22,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import com.luxlivesback.model.Usuarios;
 import com.luxlivesback.service.UsuariosService;
+import com.luxlivesback.utils.PasswordUtils;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -28,43 +30,63 @@ import com.luxlivesback.service.UsuariosService;
 @ActiveProfiles("test")
 public class UsuariosControllerTest {
 	
-	@Autowired
+	/*@Autowired
 	private MockMvc mvc;
 	
 	@MockBean
-	private UsuariosService usuarioService;
+	private UsuariosService usuariosService;	
 	
-	@Test
-	public void testBuscarClienteInvalido() throws Exception {
-		BDDMockito.given(this.usuarioService.findById(Mockito.anyLong())).willReturn(Optional.empty());
-		
-		mvc.perform(MockMvcRequestBuilders.get("/usuarios/1")
-			.accept(MediaType.APPLICATION_JSON))
+	private static final Long ID = Long.valueOf(1);
+	private static final String CPF = "457.081.060-85";
+	private static final String LOGIN = "teste";
+	private static final String SENHA = PasswordUtils.gerarBCrypt("teste");
+	private static final String EMAIL = "teste@teste.com";
+	private static final String TIPO = "ADMIN";
+	private static final String URL = "/usuarios/";*/
+	
+	/*@Test
+	public void testFindByIdInvalid() throws Exception {
+		BDDMockito.given(this.usuariosService.findById(Mockito.anyLong())).willReturn(Optional.empty());		
+		mvc.perform(MockMvcRequestBuilders.get(URL + ID).accept(MediaType.APPLICATION_JSON))
 			.andExpect(status().isBadRequest())
 			.andExpect(jsonPath("$.errors").value("Usuário nao encontrado para o id 1"));
 	}
 	
 	@Test
-	public void testeBuscarClienteValido() throws Exception {
-		BDDMockito.given(this.usuarioService.findById(Mockito.anyLong())).willReturn(Optional.of(this.obterDadosUsuario()));
-		
-		mvc.perform(MockMvcRequestBuilders.get("/usuarios/1")
-				.accept(MediaType.APPLICATION_JSON))
+	public void testFindByIdValid() throws Exception {
+		BDDMockito.given(this.usuariosService.findById(Mockito.anyLong())).willReturn(Optional.of(this.obterDadosUsuario()));		
+		mvc.perform(MockMvcRequestBuilders.get(URL + ID).accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
-				.andExpect(jsonPath("$.data.id").value(1))
-				.andExpect(jsonPath("$.data.email").value("admin@admin.com"))
-				.andExpect(jsonPath("$.data.login").value("admin"));
-		
+				.andExpect(jsonPath("$.data.id").value(ID))
+				.andExpect(jsonPath("$.data.password").value(SENHA))
+				.andExpect(jsonPath("$.data.email", equalTo(EMAIL)))
+				.andExpect(jsonPath("$.data.login", equalTo(LOGIN)))
+				.andExpect(jsonPath("$.data.cpf", equalTo(CPF)))
+				.andExpect(jsonPath("$.data.tipo", equalTo(TIPO)));				
 	}
 	
-	private Usuarios obterDadosUsuario() {
-		
-		Usuarios usuario = new Usuarios();
-		Long id = (long) 1;
-		usuario.setId(id);;
-		usuario.setEmail("admin@admin.com");
-		usuario.setLogin("admin");
-		return usuario;
+	@Test
+	public void testSave() throws Exception {
+		BDDMockito.given(this.usuariosService.save(Mockito.any(Usuarios.class))).willReturn(this.obterDadosUsuario());
+		mvc.perform(MockMvcRequestBuilders.post("/usuarios/cadastro").accept(MediaType.APPLICATION_JSON))
+		.andExpect(status().isOk())
+		.andExpect(jsonPath("$.data.id").value(ID))
+		.andExpect(jsonPath("$.data.password").value(SENHA))
+		.andExpect(jsonPath("$.data.email", equalTo(EMAIL)))
+		.andExpect(jsonPath("$.data.login", equalTo(LOGIN)))
+		.andExpect(jsonPath("$.data.cpf", equalTo(CPF)))
+		.andExpect(jsonPath("$.data.tipo", equalTo(TIPO)));				
 	}
+	
+	private Usuarios obterDadosUsuario() {		
+		Usuarios usuario = new Usuarios();		
+		usuario.setId(ID);;
+		usuario.setEmail(EMAIL);
+		usuario.setLogin(LOGIN);
+		usuario.setPassword(SENHA);
+		usuario.setCpf(CPF);
+		usuario.setTipo(TIPO);
+		return usuario;
+	}*/
 
 }
