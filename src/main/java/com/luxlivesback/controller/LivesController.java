@@ -124,8 +124,8 @@ public class LivesController {
 		
 		List<Lives> lives = null;
 		switch(coluna) {	
-			case "titulo": lives = livesRepository.findAllByTituloLazyToEagerOrderByIdDescByPage(valor, PageRequest.of(pag, qtdPorPagina));break;
-			case "genero": lives = livesRepository.findAllByGeneroLazyToEagerOrderByIdDescByPage(valor, PageRequest.of(pag, qtdPorPagina));break;
+			case "titulo": lives = livesService.findAllByTituloLazyToEagerOrderByIdDescByPage(valor, PageRequest.of(pag, qtdPorPagina)).get();break;
+			case "genero": lives = livesService.findAllByGeneroLazyToEagerOrderByIdDescByPage(valor, PageRequest.of(pag, qtdPorPagina)).get();break;
 			case "login" :
 				
 				Optional<Usuarios> usuario = usuariosService.findByLogin(valor);
@@ -134,7 +134,7 @@ public class LivesController {
 					return ResponseEntity.badRequest().body(response);	
 				}
 				
-				lives = livesRepository.findAllByUsuariosIdLazyToEagerOrderByIdDescByPage(usuario.get().getId(), PageRequest.of(pag, qtdPorPagina));
+				lives = livesService.findAllByUsuariosIdLazyToEagerOrderByIdDescByPage(usuario.get().getId(), PageRequest.of(pag, qtdPorPagina)).get();
 				break;
 				
 			default:

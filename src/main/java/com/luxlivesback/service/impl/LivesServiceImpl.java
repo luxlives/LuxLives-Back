@@ -62,6 +62,24 @@ public class LivesServiceImpl implements LivesService {
 		log.info("Buscando lista de Lives LazyToEager por ordem de dataini desc page: {}", pageable.toString());
 		return Optional.ofNullable(livesRepository.findAllLazyToEagerOrderByDataIniDescByPage(pageable));
 	}
+	
+	@Override
+	public Optional<List<Lives>> findAllByTituloLazyToEagerOrderByIdDescByPage(String titulo, Pageable pageable) {
+		log.info("Buscando lista de Lives LazToEager por ordem de id, titulo: {}, page: {}", titulo, pageable.toString());
+		return Optional.ofNullable(livesRepository.findAllByTituloLazyToEagerOrderByIdDescByPage(titulo, pageable));
+	}	
+
+	@Override
+	public Optional<List<Lives>> findAllByGeneroLazyToEagerOrderByIdDescByPage(String genero, Pageable pageable) {
+		log.info("Buscando lista de Lives LazToEager por ordem de id, genero: {}, page: {}", genero, pageable.toString());
+		return Optional.ofNullable(livesRepository.findAllByGeneroLazyToEagerOrderByIdDescByPage(genero, pageable));
+	}
+
+	@Override
+	public Optional<List<Lives>> findAllByUsuariosIdLazyToEagerOrderByIdDescByPage(Long id, Pageable pageable) {
+		log.info("Buscando lista de Lives LazToEager por ordem de id, usuario_id: {}, page: {}", id, pageable.toString());
+		return Optional.ofNullable(livesRepository.findAllByUsuariosIdLazyToEagerOrderByIdDescByPage(id, pageable));
+	}	
 
 	@Override
 	public Optional<Lives> findById(Long id) {

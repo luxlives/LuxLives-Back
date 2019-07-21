@@ -1,5 +1,7 @@
 package com.luxlivesback.utils;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -75,6 +77,14 @@ public class OptionalV2 {
 		palavra = palavra.toLowerCase();
 		palavra = palavra.substring(0,1).toUpperCase().concat(palavra.substring(1));
 		return palavra;
+	}
+	
+	public static Calendar dataAtual() {
+		
+		Date data = new Date();
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(data);
+		return cal;
 	}
 
 }

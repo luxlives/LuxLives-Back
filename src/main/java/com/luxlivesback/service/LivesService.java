@@ -23,6 +23,12 @@ public interface LivesService {
 	
 	Optional<List<Lives>> findAllLazyToEagerOrderByDataIniDescByPage(Pageable pageable);
 	
+	Optional<List<Lives>> findAllByTituloLazyToEagerOrderByIdDescByPage(String titulo, Pageable pageable);
+	
+	Optional<List<Lives>> findAllByGeneroLazyToEagerOrderByIdDescByPage(String genero, Pageable pageable);
+	
+	Optional<List<Lives>> findAllByUsuariosIdLazyToEagerOrderByIdDescByPage(Long id, Pageable pageable);	
+	
 	Optional<Lives> findById(Long id);
 	
 	Optional<Lives> findByIdLazyToEager(Long id);
