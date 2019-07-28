@@ -26,6 +26,9 @@ public class ProdutosRepositoryTest {
 	@Autowired
 	private ProdutosRepository produtosRepository;
 	
+	private static final String NOME = "Teste";
+	private static final Boolean STATUS = true;
+	
 	@Before
 	public void setUp() throws Exception {
 		this.produtosRepository.save(obterProduto1());
@@ -39,105 +42,105 @@ public class ProdutosRepositoryTest {
 	
 	@Test
 	public void testFindAllByStatus() {
-		List<Produtos> produtos = produtosRepository.findAllByStatus(true);
+		List<Produtos> produtos = produtosRepository.findAllByStatus(STATUS);
 		boolean x = produtos.size() > 0 ? true : false;
 		assertTrue(x);
 	}
 	
 	@Test
 	public void testFindAllByStatusOrderByIdAscByPage() {
-		List<Produtos> produtos = produtosRepository.findAllByStatusOrderByIdAscByPage(true, PageRequest.of(0, 5));
+		List<Produtos> produtos = produtosRepository.findAllByStatusOrderByIdAscByPage(STATUS, PageRequest.of(0, 5));
 		boolean x = produtos.size() > 0 ? true : false;
 		assertTrue(x);
 	}
 	
 	@Test
 	public void testFindAllByStatusOrderByNomeAscByPage() {
-		List<Produtos> produtos = produtosRepository.findAllByStatusOrderByNomeAscByPage(true, PageRequest.of(0, 5));
+		List<Produtos> produtos = produtosRepository.findAllByStatusOrderByNomeAscByPage(STATUS, PageRequest.of(0, 5));
 		boolean x = produtos.size() > 0 ? true : false;
 		assertTrue(x);
 	}
 	
 	@Test
 	public void testFindAllByStatusOrderByNomeDescByPage() {
-		List<Produtos> produtos = produtosRepository.findAllByStatusOrderByNomeDescByPage(true, PageRequest.of(0, 5));
+		List<Produtos> produtos = produtosRepository.findAllByStatusOrderByNomeDescByPage(STATUS, PageRequest.of(0, 5));
 		boolean x = produtos.size() > 0 ? true : false;
 		assertTrue(x);
 	}
 	
 	@Test
 	public void testFindAllByStatusOrderByQtdTokensAscByPage() {
-		List<Produtos> produtos = produtosRepository.findAllByStatusOrderByQtdTokensAscByPage(true, PageRequest.of(0, 5));
+		List<Produtos> produtos = produtosRepository.findAllByStatusOrderByQtdTokensAscByPage(STATUS, PageRequest.of(0, 5));
 		boolean x = produtos.size() > 0 ? true : false;
 		assertTrue(x);
 	}
 	
 	@Test
 	public void testFindAllByStatusOrderByQtdTokensDescByPage() {
-		List<Produtos> produtos = produtosRepository.findAllByStatusOrderByQtdTokensDescByPage(true, PageRequest.of(0, 5));
+		List<Produtos> produtos = produtosRepository.findAllByStatusOrderByQtdTokensDescByPage(STATUS, PageRequest.of(0, 5));
 		boolean x = produtos.size() > 0 ? true : false;
 		assertTrue(x);
 	}
 	
 	@Test
 	public void testFindAllByStatusOrderByPrecoReaisAscByPage() {
-		List<Produtos> produtos = produtosRepository.findAllByStatusOrderByPrecoReaisAscByPage(true, PageRequest.of(0, 5));
+		List<Produtos> produtos = produtosRepository.findAllByStatusOrderByPrecoReaisAscByPage(STATUS, PageRequest.of(0, 5));
 		boolean x = produtos.size() > 0 ? true : false;
 		assertTrue(x);
 	}
 	
 	@Test
 	public void testFindAllByStatusOrderByPrecoReaisDescByPage() {
-		List<Produtos> produtos = produtosRepository.findAllByStatusOrderByPrecoReaisDescByPage(true, PageRequest.of(0, 5));
+		List<Produtos> produtos = produtosRepository.findAllByStatusOrderByPrecoReaisDescByPage(STATUS, PageRequest.of(0, 5));
 		boolean x = produtos.size() > 0 ? true : false;
 		assertTrue(x);
 	}	
 	
 	@Test
 	public void testFindAllByNomeAndStatusOrderByIdAscByPage() {
-		List<Produtos> produtos = produtosRepository.findAllByNomeAndStatusOrderByIdAscByPage("Teste", true, PageRequest.of(0, 5));
+		List<Produtos> produtos = produtosRepository.findAllByNomeAndStatusOrderByIdAscByPage(NOME, STATUS, PageRequest.of(0, 5));
 		boolean x = produtos.size() > 0 ? true : false;
 		assertTrue(x);
 	}
 	
 	@Test
 	public void testFindAllByNomeAndStatusOrderByNomeAscByPage() {
-		List<Produtos> produtos = produtosRepository.findAllByNomeAndStatusOrderByNomeAscByPage("Teste", true, PageRequest.of(0, 5));
+		List<Produtos> produtos = produtosRepository.findAllByNomeAndStatusOrderByNomeAscByPage(NOME, STATUS, PageRequest.of(0, 5));
 		boolean x = produtos.size() > 0 ? true : false;
 		assertTrue(x);
 	}
 	
 	@Test
 	public void testFindAllByNomeAndStatusOrderByNomeDescByPage() {
-		List<Produtos> produtos = produtosRepository.findAllByNomeAndStatusOrderByNomeDescByPage("Teste", true, PageRequest.of(0, 5));
+		List<Produtos> produtos = produtosRepository.findAllByNomeAndStatusOrderByNomeDescByPage(NOME, STATUS, PageRequest.of(0, 5));
 		boolean x = produtos.size() > 0 ? true : false;
 		assertTrue(x);
 	}
 	
 	@Test
 	public void testFindAllByNomeAndStatusOrderByQtdTokensAscByPage() {
-		List<Produtos> produtos = produtosRepository.findAllByNomeAndStatusOrderByQtdTokensAscByPage("Teste", true, PageRequest.of(0, 5));
+		List<Produtos> produtos = produtosRepository.findAllByNomeAndStatusOrderByQtdTokensAscByPage(NOME, STATUS, PageRequest.of(0, 5));
 		boolean x = produtos.size() > 0 ? true : false;
 		assertTrue(x);
 	}
 	
 	@Test
 	public void testFindAllByNomeAndStatusOrderByQtdTokensDescByPage() {
-		List<Produtos> produtos = produtosRepository.findAllByNomeAndStatusOrderByQtdTokensDescByPage("Teste", true, PageRequest.of(0, 5));
+		List<Produtos> produtos = produtosRepository.findAllByNomeAndStatusOrderByQtdTokensDescByPage(NOME, STATUS, PageRequest.of(0, 5));
 		boolean x = produtos.size() > 0 ? true : false;
 		assertTrue(x);
 	}
 	
 	@Test
 	public void testFindAllByNomeAndStatusOrderByPrecoReaisAscByPage() {
-		List<Produtos> produtos = produtosRepository.findAllByNomeAndStatusOrderByPrecoReaisAscByPage("Teste", true, PageRequest.of(0, 5));
+		List<Produtos> produtos = produtosRepository.findAllByNomeAndStatusOrderByPrecoReaisAscByPage(NOME, STATUS, PageRequest.of(0, 5));
 		boolean x = produtos.size() > 0 ? true : false;
 		assertTrue(x);
 	}
 	
 	@Test
 	public void testFindAllByNomeAndStatusOrderByPrecoReaisDescByPage() {
-		List<Produtos> produtos = produtosRepository.findAllByNomeAndStatusOrderByPrecoReaisDescByPage("Teste", true, PageRequest.of(0, 5));
+		List<Produtos> produtos = produtosRepository.findAllByNomeAndStatusOrderByPrecoReaisDescByPage(NOME, STATUS, PageRequest.of(0, 5));
 		boolean x = produtos.size() > 0 ? true : false;
 		assertTrue(x);
 	}	

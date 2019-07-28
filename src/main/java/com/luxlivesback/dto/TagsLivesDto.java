@@ -1,5 +1,7 @@
 package com.luxlivesback.dto;
 
+import javax.validation.constraints.NotNull;
+
 public class TagsLivesDto {
 	
 	private Long livesId;
@@ -13,6 +15,7 @@ public class TagsLivesDto {
 		this.tagsId = tagsId;
 	}
 
+	@NotNull(message = "Lives_Id não pode ser vazio")
 	public Long getLivesId() {
 		return livesId;
 	}
@@ -21,6 +24,7 @@ public class TagsLivesDto {
 		this.livesId = livesId;
 	}
 
+	@NotNull(message = "Tags_Id não pode ser vazio")
 	public Long getTagsId() {
 		return tagsId;
 	}

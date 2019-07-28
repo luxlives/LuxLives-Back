@@ -52,7 +52,7 @@ public class UsuariosController {
 	 * criado abaixo dessa anotação.
 	 * */
 	
-	@Value("${paginacao.qtd_por_pagina}")
+	@Value("${paginacao.qtd_por_pagina_usuarios}")
 	private int qtdPorPagina;
 	
 	@Autowired

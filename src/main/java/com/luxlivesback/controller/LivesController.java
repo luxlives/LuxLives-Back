@@ -53,7 +53,7 @@ public class LivesController {
 	@Autowired
 	private LivesRepository livesRepository;
 	
-	@Value("${paginacao.qtd_por_pagina}")
+	@Value("${paginacao.qtd_por_pagina_lives}")
 	private int qtdPorPagina;
 	
 	@GetMapping("/pag/{pag}")

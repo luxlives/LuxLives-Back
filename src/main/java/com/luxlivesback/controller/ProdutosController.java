@@ -44,7 +44,7 @@ public class ProdutosController {
 	@Autowired
 	private ProdutosFunction produtosFunction;
 	
-	@Value("${paginacao.qtd_por_pagina}")
+	@Value("${paginacao.qtd_por_pagina_produtos}")
 	private int qtdPorPagina;
 	
 	@GetMapping

@@ -30,11 +30,20 @@ public class LivesRepositoryTest {
 	@Autowired
 	private UsuariosRepository usuariosRepository;
 	
-	private static final Long ID = Long.valueOf(1);
+	private static Long ID;
+	private static Long USER_ID;
+	private static String TITULO;
+	private static String GENERO;
 	
 	@Before
 	public void setUp() throws Exception {
-		this.livesRepository.save(obterLive1());
+		
+		Lives lives = this.livesRepository.save(obterLive1());
+		ID = lives.getId();
+		USER_ID = lives.getUsuarios().getId();
+		TITULO = lives.getTitulo();
+		GENERO = lives.getGenero();
+		
 		this.livesRepository.save(obterLive2());
 	}
 	
@@ -88,21 +97,21 @@ public class LivesRepositoryTest {
 	
 	@Test
 	public void testFindAllByTituloLazyToEagerOrderByIdDescByPage() {
-		List<Lives> lives = livesRepository.findAllByTituloLazyToEagerOrderByIdDescByPage("teste", PageRequest.of(0, 5));
+		List<Lives> lives = livesRepository.findAllByTituloLazyToEagerOrderByIdDescByPage(TITULO, PageRequest.of(0, 5));
 		boolean x = lives.size() > 0 ? true : false;
 		assertTrue(x);
 	}
 	
 	@Test
 	public void testFindAllByGeneroLazyToEagerOrderByIdDescByPage() {
-		List<Lives> lives = livesRepository.findAllByGeneroLazyToEagerOrderByIdDescByPage("teste", PageRequest.of(0, 5));
+		List<Lives> lives = livesRepository.findAllByGeneroLazyToEagerOrderByIdDescByPage(GENERO, PageRequest.of(0, 5));
 		boolean x = lives.size() > 0 ? true : false;
 		assertTrue(x);
 	}
 	
 	@Test
 	public void testFindAllByUsuariosIdLazyToEagerOrderByIdDescByPage() {
-		List<Lives> lives = livesRepository.findAllByUsuariosIdLazyToEagerOrderByIdDescByPage(ID, PageRequest.of(0, 5));
+		List<Lives> lives = livesRepository.findAllByUsuariosIdLazyToEagerOrderByIdDescByPage(USER_ID, PageRequest.of(0, 5));
 		boolean x = lives.size() > 0 ? true : false;
 		assertTrue(x);
 	}
